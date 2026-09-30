@@ -130,7 +130,7 @@ to explain a mistake.
 """
 
     response = client.models.generate_content(
-        model="gemini-3.6-flash",
+        model="gemini-3.5-flash-lite",
         contents=prompt
     )
 
@@ -138,11 +138,8 @@ to explain a mistake.
 question = "What is inheritance in Java?"
 
 answer = """
-Inheritance is an OOP feature in Java where a subclass
-inherits accessible fields and methods from a superclass.
-It is implemented using the extends keyword and promotes
-code reusability. It also allows method overriding, which
-supports runtime polymorphism.
+Inheritance is when a class gets things from another class.
+It is related to OOP.
 """
 
 result = evaluate_answer(question, answer)
