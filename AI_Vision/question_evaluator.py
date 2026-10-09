@@ -1,12 +1,68 @@
 from dotenv import load_dotenv
 from google import genai
 import os
+import json
 
 load_dotenv()
 
 client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
+
+def parse_response(text):
+        
+        try:
+            result=json.loads(text)
+        except json.JSONDecodeError:
+            return None
+
+
+        if not isinstance(result, dict):
+            return None
+
+        required_fields = [
+        "score",
+        "feedback",
+        "strengths",
+        "weaknesses",
+        "suggestion"
+    ]
+        
+        for field in required_fields:
+            if field not in result:
+                return None
+
+        result={
+            field:result[field]
+            for field in required_fields
+        }
+
+        if (
+            isinstance(result["score"], bool)
+            or not isinstance(result["score"], (int, float))
+            or not 0 <= result["score"] <= 10
+        ):
+            return None
+
+        if not isinstance(result["feedback"], str):
+            return None
+
+        if not isinstance(result["strengths"], list):
+            return None
+
+        if not isinstance(result["weaknesses"], list):
+            return None
+
+        if not isinstance(result["suggestion"], str):
+            return None
+
+        if not all(isinstance(item, str) for item in result["strengths"]):
+            return None
+
+        if not all(isinstance(item, str) for item in result["weaknesses"]):
+            return None
+
+        return result
 
 
 def evaluate_answer(question, answer):
@@ -73,57 +129,47 @@ Also consider the candidate's explanation quality.
 Do not penalize the candidate simply because the answer
 uses different wording from a textbook.
 
-Return the evaluation in this format:
+Return the evaluation as valid JSON.
+Return only a valid JSON object with exactly these five keys:
 
-Score:
-Give an overall score from 0 to 10 based on correctness,
-relevance, technical understanding, and completeness.
+- score
+- feedback
+- strengths
+- weaknesses
+- suggestion
 
-Use the following general guidelines:
+Do not include any additional keys.
+In particular, do not return separate fields for correctness,
+relevance, technical_understanding, or completeness.
 
-0-2: The answer is mostly incorrect, irrelevant, or shows
-very little understanding.
+Use those four evaluation criteria internally to determine
+the overall score and feedback. Do not return them separately.
 
-3-4: The answer shows limited understanding but contains
-major missing information or errors.
+Use exactly this structure:
 
-5-6: The answer demonstrates partial understanding but
-has noticeable gaps or lacks sufficient explanation.
 
-7-8: The answer is mostly correct, relevant, and demonstrates
-good understanding, with only minor gaps.
+{{
+  "score": 8,
+  "feedback": "Overall evaluation of the candidate's answer.",
+  "strengths": [
+    "Specific strength 1",
+    "Specific strength 2"
+  ],
+  "weaknesses": [
+    "Specific weakness 1"
+  ],
+  "suggestion": "Specific actionable improvement advice."
+}}
 
-9: The answer is very strong, accurate, relevant, and
-well explained, with very few missing details.
-
-10: The answer is exceptionally accurate, relevant, complete,
-and demonstrates strong technical understanding appropriate
-for the question.
-
-Do not give a high score simply because the answer is long.
-Do not give a low score simply because the answer is concise.
-The score should reflect the actual quality of the answer.
-
-Feedback:
-Provide a concise explanation of the overall quality of the answer.
-Explain the most important reasons for the evaluation.
-
-Strengths:
-List 2-3 specific things the candidate did well.
-Only include strengths that are supported by the candidate's answer.
-
-Weaknesses:
-List 1-3 specific errors, missing concepts, or areas where the
-answer could be improved.
-Do not invent weaknesses if the answer is already strong.
-
-Suggestion:
-Give specific, actionable advice that would help the candidate
-improve their answer in a future interview.
-
-The feedback should be constructive and professional.
-Do not insult or discourage the candidate.
-Do not repeat the entire correct answer.
+Rules:
+- score must be a number from 0 to 10.
+- feedback must be a string.
+- strengths must be an array of strings.
+- weaknesses must be an array of strings.
+- suggestion must be a string.
+- Return only valid JSON.
+- Do not use Markdown code fences.
+- Do not add explanations before or after the JSON.
 
 Do not provide the correct answer unless it is necessary
 to explain a mistake.
@@ -134,7 +180,18 @@ to explain a mistake.
         contents=prompt
     )
 
-    return response.text
+    return parse_response(response.text)
+
+print(parse_response(
+    '{"score": 8, "feedback": "Good", '
+    '"strengths": ["Correct"], '
+    '"weaknesses": ["Incomplete"], '
+    '"suggestion": "Add detail"}'
+))
+
+print(parse_response('{score: 8}'))
+print(parse_response('["score", 8]'))
+
 question = "What is inheritance in Java?"
 
 answer = """
@@ -142,6 +199,8 @@ Inheritance is when a class gets things from another class.
 It is related to OOP.
 """
 
+
 result = evaluate_answer(question, answer)
 
 print(result)
+
