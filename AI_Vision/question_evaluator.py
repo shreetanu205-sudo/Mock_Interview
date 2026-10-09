@@ -2,11 +2,15 @@ from dotenv import load_dotenv
 from google import genai
 import os
 import json
+from google.genai import errors
+import time
+import httpx
 
 load_dotenv()
 
 client = genai.Client(
-    api_key=os.getenv("GEMINI_API_KEY")
+    api_key=os.getenv("GEMINI_API_KEY"),
+    http_options={"timeout": 10000}
 )
 
 def parse_response(text):
@@ -174,13 +178,31 @@ Rules:
 Do not provide the correct answer unless it is necessary
 to explain a mistake.
 """
+    max_attempts=3
 
-    response = client.models.generate_content(
-        model="gemini-3.5-flash-lite",
-        contents=prompt
-    )
+    for attempt in range(max_attempts):
+        try:
+            response = client.models.generate_content(
+                    model="gemini-3.5-flash-lite",
+                    contents=prompt
+                )
+            
+            return parse_response(response.text)
+        
+        except (errors.APIError,
+             httpx.TimeoutException,
+             httpx.ConnectError
+            )as e:
+            
+            print(f"Gemini API error:{e}")
 
-    return parse_response(response.text)
+            if attempt<max_attempts-1:
+                print("Retrying in 2 seconds....")
+                time.sleep(2)
+            else:
+                print("All retry attempts failed.")
+                return None
+
 
 print(parse_response(
     '{"score": 8, "feedback": "Good", '
