@@ -5,7 +5,7 @@ const InterviewSetup = () => {
     const navigate=useNavigate()
 
     const startInterview=()=>{
-        navigate('/interview-room')
+        navigate('/interview-room/101')
     }
 
   return (

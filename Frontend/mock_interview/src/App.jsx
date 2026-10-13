@@ -19,7 +19,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/interview-setup" element={<InterviewSetup />} />
-        <Route path="/interview-room" element={<InterviewRoom />} />
+        <Route path="/interview-room/:interviewId" element={<InterviewRoom />} />
         <Route path="/results" element={<Results />} />
       </Routes>
     </BrowserRouter>
