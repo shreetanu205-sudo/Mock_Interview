@@ -1,0 +1,24 @@
+.dashboard{
+    padding:24px;
+}
+
+.card-container{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.card{
+    padding: 20px;
+    border-radius: 12px;
+    text-align: left;
+    border:1px solid white;
+}
+
+@media (max-width: 600px) {
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+}
