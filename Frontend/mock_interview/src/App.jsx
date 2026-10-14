@@ -12,11 +12,15 @@ import {
   Route
 } from 'react-router-dom'
 
+import Navbar from './Components/Navbar'
+
 const App = () => {
   return (
     <BrowserRouter>
+      <Navbar />
+
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/interview-setup" element={<InterviewSetup />} />
         <Route path="/interview-room/:interviewId" element={<InterviewRoom />} />
