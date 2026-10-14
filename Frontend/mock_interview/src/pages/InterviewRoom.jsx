@@ -1,5 +1,6 @@
 import React from 'react'
 import { useParams,useNavigate } from 'react-router-dom'
+import Button from '../Components/Button'
 
 const InterviewRoom = () => {
     const {interviewId}=useParams()
@@ -16,9 +17,7 @@ const InterviewRoom = () => {
       <p>Your interview will happen here</p>
       <p>Interview Id:{interviewId}</p>
 
-      <button type="button" onClick={showResults}>
-        Show Results
-      </button>
+      <Button text="Show Results" onClick={showResults} /> 
       
     </div>
   )

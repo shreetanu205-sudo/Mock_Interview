@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import Button from '../Components/Button'
 
 const InterviewSetup = () => {
     const navigate=useNavigate()
@@ -12,9 +13,7 @@ const InterviewSetup = () => {
     <div>
       <h1>This is the Interview Setup</h1>
 
-      <button type="button" onClick={startInterview}>
-        Start Interview
-      </button>
+      <Button text="Start Interview" onClick={startInterview} />
     
     </div>
   )
