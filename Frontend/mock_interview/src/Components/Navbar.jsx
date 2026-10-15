@@ -16,6 +16,8 @@ const Navbar = () => {
             <Link to="/results">Results</Link>
             {' | '}
             <Link to="/landing-page">Landing Page</Link>
+            {' | '}
+            <Link to="/login-page">Login Page</Link>
         </div>
     </nav>
   )

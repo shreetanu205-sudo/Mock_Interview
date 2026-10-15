@@ -42,3 +42,47 @@
     background-color:rgb(64, 13, 64);
     color:rgb(147, 147, 232);
 }
+
+
+.Login-form {
+    border: 1px solid white;
+    margin: 20px auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    border-radius: 12px;
+    max-width: 320px;
+}
+
+.Submit-Btn {
+    padding: 12px 24px;
+    background-color: rgb(14, 14, 98);
+    color: azure;
+    border: none;
+    border-radius: 15px;
+    margin: 20px auto 0;
+    cursor: pointer;
+}
+
+input {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 250px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    padding: 5px 12px;
+    margin: 0;
+}
+
+.login-page {
+    padding: 24px;
+    max-width: 380px;
+    margin: 40px auto;
+    border: 1px solid #444;
+    border-radius: 12px;
+}
+
