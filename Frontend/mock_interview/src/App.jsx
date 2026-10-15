@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard'
 import InterviewRoom from './pages/InterviewRoom'
 import InterviewSetup from './pages/InterviewSetup'
 import Results from './pages/Results'
+import LandingPage from './pages/LandingPage'
 import './App.css'
 
 import {
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/interview-setup" element={<InterviewSetup />} />
         <Route path="/interview-room/:interviewId" element={<InterviewRoom />} />
         <Route path="/results" element={<Results />} />
+        <Route path="/landing-page" element={<LandingPage />} />
       </Routes>
     </BrowserRouter>
   )

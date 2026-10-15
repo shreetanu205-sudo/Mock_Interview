@@ -22,3 +22,23 @@
         grid-template-columns: 1fr;
     }
 }
+
+.btn{
+    padding:12px 24px;
+    background-color:rgb(14, 14, 98);
+    color:azure;
+    border:none;
+    border-radius:15px;
+    margin:20px auto;
+    cursor:pointer;
+}
+
+.hero-tag{
+    font-size:15px;
+    margin:20px auto;
+    border-radius:10px;
+    padding:1px 10px;
+    width:max-content;
+    background-color:rgb(64, 13, 64);
+    color:rgb(147, 147, 232);
+}
