@@ -18,6 +18,8 @@ const Navbar = () => {
             <Link to="/landing-page">Landing Page</Link>
             {' | '}
             <Link to="/login-page">Login Page</Link>
+            {' | '}
+            <Link to="/signup-page">Signup Page</Link>
         </div>
     </nav>
   )
