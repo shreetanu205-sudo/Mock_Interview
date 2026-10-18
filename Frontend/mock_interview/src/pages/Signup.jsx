@@ -23,8 +23,9 @@ const Signup = () => {
             return
         }
 
-        if(password!=confirmPassword){
+        if(password!==confirmPassword){
             setMessage('Passwords do not match')
+            return
         }
 
         setMessage('Signup Successfull')
@@ -69,11 +70,11 @@ const Signup = () => {
 
         <label htmlfor="confirmPassword">Confirm Password</label>
         <input 
-            type='confirmPassword'
+            type='Password'
             id='confirmPassword'
             value={confirmPassword}
             placeholder="Enter password again"
-            onChange={(event)=>setconfirmPassword(event.target.value)}
+            onChange={(event)=>setConfirmPassword(event.target.value)}
             required
         />
         <button type="submit" className="Submit-Btn">
@@ -81,7 +82,7 @@ const Signup = () => {
         </button>
       </form>
 
-      {message && <p role="status">{message}</p>}
+      {message && <p role="status" className='status-signup'>{message}</p>}
 
        <p>
             Already have an account?{' '}
