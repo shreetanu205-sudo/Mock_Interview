@@ -23,27 +23,63 @@
     }
 }
 
-.btn{
-    padding:12px 24px;
-    background-color:rgb(14, 14, 98);
-    color:azure;
-    border:none;
-    border-radius:15px;
-    margin:20px auto;
-    cursor:pointer;
-}
-
 .hero-tag{
     font-size:15px;
     margin:20px auto;
     border-radius:10px;
     padding:1px 10px;
     width:max-content;
-    background-color:rgb(64, 13, 64);
-    color:rgb(147, 147, 232);
+    color: #63358b;
+    font-family:serif;
+}
+.hero{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+}
+.hero-header{
+    font-family:serif;
+    font-size:65px;
+    color:#1d0b2d;
+}
+.hero-sub-header{
+    color:#63358b;
+    font-style:italic;
+    font-size:55px;
+}
+.interview-start-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 30px;
+  background: #63358b;
+  color: #fff7f0;
+  font-weight: 600;
+  text-decoration:none;
+  margin:20px;
 }
 
+.landing-scroll{
+    width:100%;
+    background-color:#1d0b2d;
+    height:500px;
+    display:flex;
+    flex-direction:column;
+    align-items:start;
+}
 
+.feature{
+    font-size:45px;
+    color:white;
+}
+
+.feature-sub-head{
+    color:#FFBFA3;
+    margin:0;
+    font-size:45px;
+    font-style:italic;
+}
 .Login-form {
     border: 1px solid white;
     margin: 20px auto;
@@ -56,7 +92,20 @@
     border-radius: 12px;
     max-width: 320px;
 }
+.footer-intro{
+    display:flex;
+    flex-direction:column;
+    align-items:start;
+    margin-top:160px;
+    margin-left:100px;
+}
 
+.bottom{
+    background-color: #FFBFA3;
+    color:#1d0b2d;
+    display:flex;
+    justify-content:space-evenly;
+}
 .Submit-Btn {
     padding: 12px 24px;
     background-color: rgb(14, 14, 98);
@@ -89,3 +138,4 @@ input {
 .status-signup{
     color:red;
 }
+

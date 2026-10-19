@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '../Components/Button'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom'
 
 const LandingPage = () => {
     const navigate=useNavigate()
@@ -10,55 +10,44 @@ const LandingPage = () => {
     }
   return (
     <div className="LandingPage">
-        <section classname="hero">
+        <div classname="hero">
             <div className="hero-tag">
-                AI powered Interview Preparation
+                YOUR PERSONAL AI INTERVIEW STUDIO
             </div>
 
-            <h1>
-                Land your dream job with Confidence
+            <h1 className="hero-header">
+                Practise the questions.
             </h1>
+            <h1 className="hero-sub-header">Own the room.</h1>
 
             <p className="hero-Description">
-                Practise role-based interviews, receive AI-generated
-                feedback, and improve your interview skills.
+                Build interview confidence with adaptive questions,thoughtful feedback, and coaching that gets you close to your dream role.
             </p>
 
-            <Button 
-                type="button" 
-                text="Start Practicing"
-                onClick={startPractising}>
-            </Button>
+            <Link to="/interview-setup" className="interview-start-btn">
+                Start Practicing <span>&rarr;</span>
+            </Link>
 
-        </section>
-        <section className="features">
-            <h2>Everything you need to prepare</h2>
-
-            <div className='card-container'>
-                <div className='card'>
-                    <h3>Resume Analysis</h3>
-                    <p>
-                        Identify relevant skills and prepare
-                        for questions based on your resume.
+        </div>
+        <div className="footer">
+            <footer>
+                <div className="landing-scroll">
+                    <div className="footer-intro">
+                        <h1 className="feature">
+                        More than a mock.
+                        </h1>
+                        <h1 className="feature-sub-head">
+                            A better way to grow.
+                        </h1>
+                    </div>
+                </div>
+                <div className="bottom">
+                    <p classname="footer-text">
+                    THINK CLEARLY  *  SPEAK NATURALLY  *  GROW CONFIDENTLY 
                     </p>
                 </div>
-                <div className="card">
-                    <h3>Mock Interviews</h3>
-                    <p>
-                        Practise interview questions tailored
-                        to your target role.
-                    </p>
-                </div>
-                <div className="card">
-                    <h3>AI feedback</h3>
-                    <p>
-                        Review your answers and discover
-                        areas where you can improve.
-                    </p>
-                </div>
-            </div>
-        </section>
-      
+            </footer>
+        </div>
     </div>
   )
 }
