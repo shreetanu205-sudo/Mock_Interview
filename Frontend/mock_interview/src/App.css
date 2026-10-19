@@ -60,16 +60,20 @@
   margin:20px;
 }
 
+.interview-start-btn:hover{
+    background: #4c276d;
+    color: #fff7f0;
+}
 .landing-scroll{
     width:100%;
     background-color:#1d0b2d;
-    height:500px;
+    height:1000px;
     display:flex;
     flex-direction:column;
     align-items:start;
 }
 
-.feature{
+.feature-description-tag{
     font-size:45px;
     color:white;
 }
