@@ -1,3 +1,8 @@
+p,span,body{
+    margin:0;
+    padding:0;
+}
+
 .dashboard{
     padding:24px;
 }
@@ -64,10 +69,11 @@
     background: #4c276d;
     color: #fff7f0;
 }
-.landing-scroll{
+
+.features-section{
     width:100%;
     background-color:#1d0b2d;
-    height:1000px;
+    height:500px;
     display:flex;
     flex-direction:column;
     align-items:start;
@@ -83,6 +89,30 @@
     margin:0;
     font-size:45px;
     font-style:italic;
+}
+
+.features-list{
+    width:500px;
+    height:500px;
+}
+
+.feature-item{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:start;
+}
+
+.description-number{
+
+}
+
+.description-tag{
+
+}
+
+.description-para{
+
 }
 .Login-form {
     border: 1px solid white;
